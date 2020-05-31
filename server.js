@@ -9,10 +9,11 @@ const router = require('express').Router();
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static('./Develop/public'))
-
+// Gets notes from db.json
 app.get('/api/notes', (req, res) => {
     res.json(notes)
 });
+// Saves note to db.json
 app.post('/api/notes', (req, res) => {
     req.body.id = notes.length.toString();
     const note = req.body;
@@ -23,6 +24,7 @@ app.post('/api/notes', (req, res) => {
     );
     res.json(note)
 });
+// Connects the back end to front end
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './Develop/public/index.html'));
 });
