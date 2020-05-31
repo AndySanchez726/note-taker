@@ -1,24 +1,34 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const fs = require('fs');
 const PORT = process.env.PORT || 3001;
 const notes = require('./Develop/db/db');
+const router = require('express').Router();
+// const saveNote = require('./Develop/public/assets/js/index');
 
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.static('./Develop/public'))
 
 app.get('/api/notes', (req, res) => {
-    // let results = notes;
     res.json(notes)
 });
-// app.use()
-app.use(express.static('./Develop/public'))
-// Routes to send html files
+app.post('/api/notes', (req, res) => {
+    const note = req.body;
+    notes.push(note)
+    fs.writeFileSync(
+        path.join(__dirname, './Develop/db/db.json'),
+        JSON.stringify({notes: notes}, null, 2)
+    );
+    res.json(note)
+});
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, './Develop/public/index.html'));
 });
 app.get('/notes', (req, res) => {
     res.sendFile(path.join(__dirname, './Develop/public/notes.html'));
 });
-
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
 });
