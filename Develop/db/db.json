@@ -9,16 +9,6 @@
       "title": "Test Note",
       "text": "this is a test note",
       "id": "1"
-    },
-    {
-      "title": "Note #3",
-      "text": "this is another test for id 2",
-      "id": "2"
-    },
-    {
-      "title": "Note #4",
-      "text": "this note should represent id 3",
-      "id": "3"
     }
   ]
 }
