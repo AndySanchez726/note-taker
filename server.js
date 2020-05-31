@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 const PORT = process.env.PORT || 3001;
-const notes = require('./Develop/db/db');
+const {notes} = require('./Develop/db/db');
 const router = require('express').Router();
 // const saveNote = require('./Develop/public/assets/js/index');
 
@@ -15,6 +15,7 @@ app.get('/api/notes', (req, res) => {
     res.json(notes)
 });
 app.post('/api/notes', (req, res) => {
+    req.body.id = notes.length.toString();
     const note = req.body;
     notes.push(note)
     fs.writeFileSync(

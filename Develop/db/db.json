@@ -7,7 +7,13 @@
     },
     {
       "title": "Test Note",
-      "text": "this is a test note"
+      "text": "this is a test note",
+      "id": 1
+    },
+    {
+      "title": "Note #3",
+      "text": "this is another test for id 2",
+      "id": "2"
     }
   ]
 }
